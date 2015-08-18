@@ -1,0 +1,201 @@
+
+1 简答题（写概念，思原理）
+1.1 举例说明二分查找算法原理
+
+参考答案：
+
+待查找数组：
+
+8 17 19 37 40 73 79 82 87 95 97 98
+
+输入查找值：？95
+
+low=0, mid=-1, high=11
+
+low=6, mid=5, high=11
+
+low=9, mid=8, high=11
+
+low=9, mid=10, high=9
+
+可以找到：index = 9。
+1.2 什么是递归
+
+参考答案：
+
+方法在执行时调用自身。
+
+
+2 填空题（读代码、加注释）
+2.1 下面的代码用于在指定位置添加注释。
+
+    /*
+    * 描述此段代码的功能：（ 冒泡排序算法 ）
+    */
+    import java.util.Arrays;
+    import org.apache.commons.lang.math.RandomUtils;
+    public class BubbleSort {
+        public static void main(String[] args) {
+            int[] arr = new int[12];
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = RandomUtils.nextInt(100);
+            }
+            // 冒泡排序
+            System.out.println(Arrays.toString(arr));
+            System.out.println("----------冒泡排序 开始----------");
+    //下列for语句和if语句意义何在？（比较相邻的元素，将小的放到前面 ）
+            for (int i = 0; i < arr.length - 1; i++) {
+                boolean isSwap = false;
+                for (int j = 0; j < arr.length - i - 1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        int t = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = t;
+                        isSwap = true;
+                    }
+                }
+                if (!isSwap)
+                    break;
+                System.out.println(Arrays.toString(arr));
+            }
+            System.out.println("----------冒泡排序 结束----------");
+            System.out.println(Arrays.toString(arr));
+        }
+    }
+
+2.2 下面的代码用于在指定位置添加注释。
+
+    /*
+    *描述此段代码的功能：（ int数据类型的解析 ）
+    */
+    public class ParseInt {
+        public static void main(String[] args) throws Exception {
+            before();
+            RandomAccessFile raf = new RandomAccessFile("tmp", "r");
+    //此句的意义何在？（ 读取一个有符号的八位值 ）
+            byte b1 = raf.readByte();
+            byte b2 = raf.readByte();
+            byte b3 = raf.readByte();
+            byte b4 = raf.readByte();
+            raf.close();
+            // -------------------------------------------
+    //此句的意义何在？（系统使用0xff清理int数据: 将高24位清理为0, 低8位是从文件中读取的byte数据 ）
+            int d1 = b1 & 0xff;        
+            int d2 = b2 & 0xff;
+            int d3 = b3 & 0xff;
+            int d4 = b4 & 0xff;
+            int value = (d1 << 24) + (d2 << 16) + (d3 << 8) + d4;
+            System.out.println("解析出的int数据是：" + value);
+            // -------------------------------------------
+            after();
+        }
+    //此方法的功能是：（ 实现将一个int类型的随机数存入tmp文件 ）
+        public static void before() throws Exception {
+            DataOutputStream dos =
+    new DataOutputStream(new FileOutputStream("tmp"));
+            Random ran = new Random();
+            int value = ran.nextInt(Integer.MAX_VALUE);
+            System.out.println("存入文件的int数据是：" + value);
+            dos.writeInt(value);
+            dos.close();
+        }
+    //此方法的功能是：（ 将tmp文件删除 ）
+        public static void after() throws Exception {
+            File file = new File("tmp");
+            if (file.exists() && file.isFile()) {
+                file.delete();
+            }
+        }
+    }
+
+2.3 下面的代码用于在指定位置添加注释。
+
+    /*
+    *描述此段代码的功能：（ 费氏数列的不同算法比较 ）
+    */
+    public class Recursive {
+        
+        public static void main(String[] args) {
+            int n = 50;
+    //此句的意义何在？（ 获取当前时间 ）
+            long time = System.currentTimeMillis();
+            System.out.println("fibByFor(" + n + ")=" + fibByFor(n));
+            System.out.println("使用for循环计算，用时："
+                        + (System.currentTimeMillis() - time) + "毫秒");
+            time = System.currentTimeMillis();
+            System.out.println("fibByRecursive(" + n + ")="
+                        + fibByRecursive(n));
+            System.out.println("使用递归计算，用时："
+                        + (System.currentTimeMillis() - time) + "毫秒");    
+        }
+    //此方法的意义何在？（ 循环方式计算费氏数列 ）
+        public static long fibByFor(int n) {
+            if (n == 1 || n == 2)
+                return 1;
+            long f1 = 1;
+            long f2 = 1;
+            for (int i = 3; i <= n; i++) {
+                f2 = f1 + f2;
+                f1 = f2 - f1;
+            }
+            return f2;
+        }
+        //此方法的意义何在？ （ 递归方式计算 ）
+        public static long fibByRecursive(int n) {
+            if (n == 1 || n == 2)
+                return 1;
+            return fibByRecursive(n - 1) + fibByRecursive(n - 2);
+        }
+    }
+
+
+
+
+3 编程题（改代码，写代码）
+3.1 实现匹配游戏算法
+
+在两个数组中，索引相同且该相同索引上的值也相同，用a表示。
+
+在两个数组中，索引不同且该不同索引上的两个值相同，用b表示。
+
+例：
+
+int[] arrOne = { 2, 1, 4, 5, 6 };
+
+int[] arrTwo = { 2, 4, 7, 1, 6 };
+
+以上数组中有2个a， 2个b
+
+参考答案：
+
+    public class Matching {
+        public static void main(String[] args) {
+            int[] arrOne = { 2, 1, 4, 5, 6 };
+            int[] arrTwo = { 2, 4, 7, 1, 6 };
+            String str = match(arrOne, arrTwo);
+            System.out.println(str);
+        }
+        /**
+         *
+         * @param arrOne 源数组
+         * @param arrTwo 与源数组匹配的数组
+         * @return
+         */
+        public static String match(int[] arrOne, int[] arrTwo) {
+            int a = 0;
+            int b = 0;
+            for (int i = 0; i < arrOne.length; i++) {
+                for (int j = 0; j < arrTwo.length; j++) {
+                    if (i == j && arrOne[i] == arrTwo[j]) {
+                        a++;
+                    } else if (i != j && arrOne[i] == arrTwo[j]) {
+                        b++;
+                    }
+                }
+            }
+            return "a=" + a + ",b=" + b;
+        }
+    }
+
+隐藏
+
