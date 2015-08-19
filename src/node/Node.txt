@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 1.实现循环链表数据存储结构，如有序数据序列[2，3，4，6] 
 
 在如上有序数据序列[2，3，4，6]中，插入方法是将数据插入到链表
@@ -41,4 +42,49 @@ head =Node.insert(head,2, 8);
 Node.print(head);
 }
 }
+=======
+1.实现循环链表数据存储结构，如有序数据序列[2，3，4，6] 
+
+在如上有序数据序列[2，3，4，6]中，插入方法是将数据插入到链表
+的指定位置，比如在位置2处插入元素8，就会得到数据序列[2，3，8，4，6]
+链表结构中的每个节点是一个对象，每个对象有两个属性，一个属性是引用类型，
+用来引用下一个元素，另外一个属性是int类型，用来保存被存储的数据。head
+是节点类型的引用变量引用第一个存储数据的节点。
+本题的详细要求如下：
+1) 定义一个名为Node的类描述链表节点对象的特征，包含两个属性一个是Node next
+用于引用下一个节点, 另一个是int data用于存储节点数据。 并在该类中定义带参数
+的构造器, 使用int data作为参数，初始化data属性，并且将next属性引用当前对象自身。
+2)在Node类中定义一个静态方法static Node insert(Node head,int index, int data)，
+该方法用于将数据data插入到head引用的链表结构的index位置，并返回当前链表结构。
+方法过程分为查找对应位置节点和插入新节点两个步骤，详细描述如下：
+
+  A. 将head引用的节点作为当前节点node；
+  B. 定义一个变量i,默认值为0,表示当前节点位置；
+  C. 若index值为0，则说明是从链表的第一个节点位置插入新元素。执行D步骤。
+  若不是，则执行I步骤；
+  D. 创建新节点newNode；
+  E. 插入新的节点：将newNode 的next属性引用头节点head。然后找到最后一个节点。
+  F. 从node节点开始查找下一个节点next；
+  G. 如果next节点的下一个节点是头节点head，说明该节点是链表最后一个节点，那么将
+  该节点next属性引用newNode完成插入工作。
+  H.返回newNode作为该链表新的头节点。
+  I. 循环判断查看i+1的值是否等于index，若等于则说明找到待插入元素的上一个元素了。
+  否则对i++然后让node的next节点作为当前节点node.直到找到该元素为止。若过程中发现
+  node的next节点是head,则说明到达链表末尾仍没有找到对应位置，则输出下标越界并返回
+  原头节点head。
+  J. 插入新的节点：将newNode的下一个节点属性next引动的节点作为node的next属性引用
+  的节点。再将node的next属性引用newNode节点，完成插入动作。
+  K.返回head作为链表的头节点
+3)如果采用如下类作为测试案例：
+public class T3 {
+public static void main(String[] args) {
+Node head = new Node(2);
+head = Node.insert(head,1, 3);
+head =Node.insert(head,2, 4);
+head =Node.insert(head,3, 6);
+head =Node.insert(head,2, 8);
+Node.print(head);
+}
+}
+>>>>>>> d5796f63539d069b3813af43e6c2250a2745efd0
 可以得到如下结果：2 3 8 4 6

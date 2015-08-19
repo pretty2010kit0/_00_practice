@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- _00_ChangeGBKFilesToUTFFiles的配置文件 -->
 <params>
@@ -7,4 +8,15 @@
 	<utf8DirPath>C:\Users\zhoupc\Desktop\FTP\UTF-8</utf8DirPath>
 	<!-- 要转码的文件类型 -->
 	<fileTypes>java,txt,xml,properties</fileTypes>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- _00_ChangeGBKFilesToUTFFiles的配置文件 -->
+<params>
+	<!-- gbk文件夹路径 -->
+	<gbkDirPath>C:\Users\zhoupc\Desktop\FTP\day03_am</gbkDirPath>
+	<!-- utf-8文件夹路径 -->
+	<utf8DirPath>C:\Users\zhoupc\Desktop\FTP\UTF-8</utf8DirPath>
+	<!-- 要转码的文件类型 -->
+	<fileTypes>java,txt,xml,properties</fileTypes>
+>>>>>>> d5796f63539d069b3813af43e6c2250a2745efd0
 </params>

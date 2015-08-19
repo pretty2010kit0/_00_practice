@@ -18,5 +18,10 @@
 /node/
 /suanfa/
 /test/
+<<<<<<< HEAD
 /格式化输出符号说明.txt
 /zhou/
+=======
+/zhou/
+/格式化输出符号说明.txt
+>>>>>>> d5796f63539d069b3813af43e6c2250a2745efd0

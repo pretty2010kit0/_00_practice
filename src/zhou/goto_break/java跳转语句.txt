@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 java 跳转语句
 
 Java 支持 3 种跳转语句：break，continue 和return 。这些语句
@@ -308,4 +309,316 @@ Before the return.
 最后一点：在上面的程序中，if(t)语句是必要的。没有它，Java 编译器将标记
 “执行不到的代码”（unreachable code ）错误，因为编译器知道最后的
 println （）语句将永远不会被执行。为阻止这个错误，为了这个例子能够执行，
+=======
+java 跳转语句
+
+Java 支持 3 种跳转语句：break，continue 和return 。这些语句
+把控制转移到程序的其他部分。下面对每一种语句进行讨论。 
+
+
+注意：除了这里讨论的跳转语句，Java 还支持另一种能改变你程序执行
+流程的方法:通过异常处理。异常处理提供了一种结构化的方法，通过该
+方法可以使你的程序捕获并处理运行时刻错误。它由下列五个关键字来
+控制：try，catch，throw，throws，和 finally 。实质上，异常处
+理机制允许你的程序完成一个非局部的分支跳转。由于异常处理是一个大
+话题，我们将专门讨论。 
+
+5.3.1 使用break 语句 
+在Java 中，break语句有3种作用
+第一，你已经看到，在switch语句中，它被用来终止一个语句序列。
+第二，它能被用来退出一个循环。
+第三，它能作为一种“先进”的goto 语句来使用。
+下面对最后 2种用法进行解释。 
+
+使用break 退出循环 
+
+可以使用break 语句直接强行退出循环，忽略循环体中的任何其他
+语句和循环的条件测试。在循环中遇到break语句时，循环被终止，
+程序控制在循环后面的语句重新开始。下面是一个简单的例子： 
+
+//Using break to exit a loop. 
+class BreakLoop {
+	public static void main(String args[]) {
+		for (int i = 0; i < 100; i++) {
+			if (i == 10)
+				break; // terminate loop if i is 10
+			System.out.println("i: " + i);
+		}
+		System.out.println("Loop complete.");
+	}
+}
+
+
+该程序产生如下的输出： 
+
+i: 0 
+i: 1 
+i: 2 
+i: 3 
+i: 4 
+i: 5 
+i: 6 
+i: 7 
+i: 8 
+i: 9 
+Loop complete. 
+
+正如你看到的那样，尽管for 循环被设计为从 0执行到99，但是当i等于10时，
+break语句终止了程序。break语句能用于任何 Java 循环中，包括人们有意
+设置的无限循环。例如，将上一个程序用while 循环改写如下。该程序的输出
+和刚才看到的输出一样。 
+
+// Using break to exit a while loop. 
+class BreakLoop2 { 
+	public static void main(String args[]) { 
+		int i = 0; 
+		while(i < 100) { 
+			if(i == 10) break; // terminate loop if i is 10 
+			System.out.println("i: " + i); 
+			i++; 
+		} 
+		System.out.println("Loop complete."); 
+	} 
+} 
+
+
+在一系列嵌套循环中使用break 语句时，它将仅仅终止最里面的循环。例如： 
+
+// Using break with nested loops. 
+class BreakLoop3 {
+	public static void main(String args[]) {
+		for (int i = 0; i < 3; i++) {
+			System.out.print("Pass " + i + ":");
+			for (int j = 0; j < 100; j++) {
+				if (j == 10)
+					break; // terminate loop if j is 10
+				System.out.print(j + " ");
+			}
+			System.out.println();
+		}
+		System.out.println("Loops complete.");
+	}
+}
+
+
+该程序产生如下的输出： 
+
+Pass 0: 0 1 2 3 4 5 6 7 8 9 
+Pass 1: 0 1 2 3 4 5 6 7 8 9 
+Pass 2: 0 1 2 3 4 5 6 7 8 9 
+Loops complete. 
+
+
+从中可以看出，在内部循环中的break语句仅仅终止了该循环，外部的循环不受影响。 
+
+关于break ，在这里要记住两点。首先，一个循环中可以有一个以上的break语句。
+但要小心，太多的break 语句会破坏你的代码结构。其次，switch语句中的break
+仅仅影响该switch 语句，而不会影响其中的任何循环。 
+
+注意：break不是被设计来提供一种正常的循环终止的方法。循环的条件语句是专门
+用来终止循环的。只有在某类特殊的情况下，才用break语句来取消一个循环。 
+
+把break当作goto的一种形式来用 
+
+break 语句除了在switch语句和循环中使用之外，它还能作为goto语句的一种“文明”
+形式来使用。Java 中没有 goto 语句，因为goto 语句提供了一种改变程序运行流程
+的非结构化方式。这通常使程序难以理解和难于维护。它也阻止了某些编译器的优化。
+但是，有些地方goto 语句对于构造流程控制是有用的而且是合法的。例如，从嵌套很深
+的循环中退出时， goto 语句就很有帮助。因此，Java 定义了break 语句的一种扩展
+形式来处理这种情况。通过使用这种形式的break，你可以终止一个或者几个代码块。
+这些代码块不必是一个循环或一个switch语句的一部分，它们可以是任何的块。而且，
+由于这种形式的break 语句带有标签，你可以明确指定执行从何处重新开始。你将看到，
+break带给你的是goto 的益处，并舍弃了goto 语句带来的麻烦。 
+
+标签break 语句的通用格式如下所示： 
+
+breaklabel; 
+这里，标签label 是标识代码块的标签。当这种形式的break执行时，控制被传递出
+指定的代码块。被加标签的代码块必须包围break 语句，但是它不需要是直接的包围
+break的块。这意味着你可以使用一个加标签的break 语句退出一系列的嵌套块。
+但是你不能使用break 语句将控制传递到不包含break 语句的代码块。 
+
+要指定一个代码块，在其开头加一个标签即可。标签（label ）可以是任何合法有效
+的Java 标识符后跟一个冒号。一旦你给一个块加上标签后，你就可以使用这个标签
+作为break 语句的对象了。这样做会使执行在加标签的块的结尾重新开始。例如，
+下面的程序示例了 3 个嵌套块，每一个都有它自己的标签。break语句使执行向前跳，
+跳过了定义为标签second 的代码块结尾，跳过了2个println ( ) 语句。 
+
+// Using break as a civilized form of goto. 
+class Break {
+	public static void main(String args[]) {
+		boolean t = true;
+		first: {
+			second: {
+				third: {
+					System.out.println("Before the break.");
+					if (t)
+						break second; // break out of second block
+					System.out.println("This won't execute");
+				}
+
+				System.out.println("This won'texecute");
+			}
+			System.out.println("This is after secondblock.");
+
+		}
+	}
+} 
+
+
+运行该程序，产生如下的输出： 
+
+Before the break. 
+This is after second block. 
+
+
+标签break 语句的一个最普遍的用法是退出循环嵌套。例如，下面的程序中，外层的循环
+只执行了一次： 
+
+// Using break to exit from nested loops 
+class BreakLoop4 {
+	public static void main(String args[]) {
+		outer: for (int i = 0; i < 3; i++) {
+			System.out.print("Pass " + i + ":");
+			for (int j = 0; j < 100; j++) {
+				if (j == 10)
+					break outer; // exit both loops
+				System.out.print(j + " ");
+			}
+			System.out.println("This will notprint");
+		}
+		System.out.println("Loops complete.");
+	}
+} 
+该程序产生如下的输出： 
+
+Pass 0: 0 1 2 3 4 5 6 7 8 9 Loops complete. 
+
+你可以看到，当内部循环退到外部循环时，两个循环都被终止了。记住如果一个标签不在
+包围break的块中定义，你就不能break 到该标签。例如，下面的程序就是非法的，且不
+会被编译： 
+
+//This program contains an error. 
+class BreakErr {
+	public static void main(String args[]) {
+		one: for (int i = 0; i < 3; i++) {
+			System.out.print("Pass " + i + ":");
+		}
+		for (int j = 0; j < 100; j++) {
+			if (j == 10)
+				break one; // WRONG
+			System.out.print(j + " ");
+		}
+	}
+} 
+
+
+因为标签为one的循环没有包围break 语句，所以不能将控制传递到该块。 
+
+5.3.2 使用continue 语句 
+有时强迫一个循环提早反复是有用的。也就是，你可能想要继续运行循环，
+但是要忽略这次重复剩余的循环体的语句。实际上，goto 只不过是跳过
+循环体，到达循环的尾部。
+continue 语句是break语句的补充。在while 和do while 循环中，
+continue 语句使控制直接转移给控制循环的条件表达式，然后继续循环过程。
+在for 循环中，循环的反复表达式被求值，然后执行条件表达式，循环继续执行。
+对于这3种循环，任何中间的代码将被旁路。 
+
+下例使用continue 语句，使每行打印2个数字： 
+
+//Demonstrate continue. 
+class Continue {
+	public static void main(String args[]) {
+		for (int i = 0; i < 10; i++) {
+			System.out.print(i + " ");
+			if (i % 2 == 0)
+				continue;
+			System.out.println("");
+		}
+	}
+} 
+
+
+该程序使用%（模）运算符来检验变量i是否为偶数，如果是，循环继续执行
+而不输出一个新行。该程序的结果如下： 
+
+0 1 
+2 3 
+4 5 
+6 7 
+8 9 
+
+
+对于break语句，continue 可以指定一个标签来说明继续哪个包围的循环。
+下面的例子运用continue 语句来打印0到9的三角形乘法表： 
+
+//Using continue with a label. 
+class ContinueLabel {
+
+	public static void main(String args[]) {
+		outer: for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				if (j > i) {
+					System.out.println();
+					continue outer;
+				}
+				System.out.print(" " + (i * j));
+			}
+		}
+		System.out.println();
+	}
+
+}
+
+在本例中的continue 语句终止了计数j的循环而继续计数i的下一次循环反复。
+该程序的输出如下： 
+
+0 
+0 1 
+0 2 4 
+0 3 6 9 
+0 4 8 12 16 
+0 5 10 15 20 25 
+0 6 12 18 24 30 36 
+0 7 14 21 28 35 42 49 
+0 8 16 24 32 40 48 56 64 
+0 9 18 27 36 45 54 63 72 81 
+
+
+很好的利用continue 语句的情况很少，一个原因是Java 提供了一系列丰富的
+循环语句，可以适用于绝大多数应用程序。但是，对于那些需要提早反复的特殊
+情形，continue 语句提供了一个结构化的方法来实现。 
+
+5.3.3 使用return语句 
+最后一个控制语句是return。return语句用来明确地从一个方法返回。也就是，
+return 语句使程序控制返回到调用它的方法。因此，将它分类为跳转语句。
+这里对其作简要地介绍。 
+
+在一个方法的任何时间，return 语句可被用来使正在执行的分支程序返回到调用它的方法。
+下面的例子说明这一点。下例中，由于是Java 运行系统调用main() ，因此，return语句
+使程序执行返回到Java 运行系统。 
+
+//Demonstrate return. 
+class Return {
+	public static void main(String args[]) {
+		boolean t = true;
+		System.out.println("Before the return.");
+		if (t)
+			return; // return to caller
+		System.out.println("This won'texecute.");
+	}
+}
+
+
+该程序的结果如下： 
+
+Before the return. 
+
+正如你看到的一样，最后的println( ) 语句没有被执行。一旦return语句被执行，
+程序控制传递到它的调用者。 
+
+最后一点：在上面的程序中，if(t)语句是必要的。没有它，Java 编译器将标记
+“执行不到的代码”（unreachable code ）错误，因为编译器知道最后的
+println （）语句将永远不会被执行。为阻止这个错误，为了这个例子能够执行，
+>>>>>>> d5796f63539d069b3813af43e6c2250a2745efd0
 在这里使用if语句来“蒙骗”编译器。

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package test;
 //A B C D
 public class ChildClass extends SuperClass{
@@ -20,3 +21,27 @@ public class ChildClass extends SuperClass{
 		new ChildClass().f(5);
 	}
 }
+=======
+package test;
+//A B C D
+public class ChildClass extends SuperClass{
+	static{
+		System.out.println("子类静态块");
+	}
+	{
+		System.out.println("子类非静态块");
+	}
+	public ChildClass(){
+		System.out.println("子类构造器");
+	}
+	public void f(String x){
+		System.out.println("子类方法f（）");
+	}
+	public void f(int num){
+	}
+	public void f(){}
+	public static void main(String[] args) {
+		new ChildClass().f(5);
+	}
+}
+>>>>>>> d5796f63539d069b3813af43e6c2250a2745efd0

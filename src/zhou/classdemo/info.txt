@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 这个包中放的是关于Java类定义的相关知识。
 
 Sphere是球体类：定义了一些成员变量和方法。
 SphereTest是Sphere的测试类。
+=======
+这个包中放的是关于Java类定义的相关知识。
+
+Sphere是球体类：定义了一些成员变量和方法。
+SphereTest是Sphere的测试类。
+>>>>>>> d5796f63539d069b3813af43e6c2250a2745efd0
 TryInitialization演示了初始化代码块的使用。
