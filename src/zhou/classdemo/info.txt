@@ -1,0 +1,5 @@
+这个包中放的是关于Java类定义的相关知识。
+
+Sphere是球体类：定义了一些成员变量和方法。
+SphereTest是Sphere的测试类。
+TryInitialization演示了初始化代码块的使用。

@@ -1,0 +1,85 @@
+ 78, 67, 3, 23};
+
+for(int i=0;i<arr.length-1;i++){    //5轮
+	for(int j=0;j<arr.length-1-i;j++){    //每轮比的次数
+		if(arr[j]>arr[j+1]){
+			int temp = arr[j];
+			arr[j] = arr[j+1];
+			arr[j+1] = temp;
+		}
+	}
+}
+
+i----------5-i
+0轮-----5次
+1轮-----4次
+2轮-----3次
+3轮-----2次
+4轮-----1次
+第一轮:-----冒出78
+   4和8比------不换
+   8和78比----不换
+   78和67比--换---4,8,67,78,3,23
+   78和3比----换---4,8,67,3,78,23
+   78和23比--换---4,8,67,3,23,78
+第二轮:-----冒出67
+   4和8比
+   8和67比
+   67和3比--------4,8,3,67,23,78
+   67和23比------4,8,3,23,67,78
+第三轮:------冒出23
+   4和8比
+   8和3比---------4,3,8,23,67,78
+   8和23比
+第四轮:-------冒出8
+   4和3比---------3,4,8,23,67,78
+   4和8比
+第五轮:-------冒出4
+   3和4比
+
+JDK------------------封装好
+double dou = Math.random();
+int num = scan.nextInt();-------20行
+double dou = scan.nextDouble();
+long begin = System.currentTimeMillions();
+int num = rand.nextInt(100);
+Arrays.sort(arr);----------------void
+int[] arrNew = Arrays.copyOf(?,?);-------------int[]
+System.arraycopy(?,?,?,?,?);---void
+
+
+
+sayHi();
+sayHi("zhangsan");
+sayHi("lisi");
+
+public static void sayHi(){
+	System.out.println("大家好，我叫WKJ");
+}
+public static void sayHi(String name){
+	System.out.println("大家好，我叫" + name);
+}
+
+
+
+
+
+A用户:----一个按钮
+
+main(){
+	//业务
+	//查询，改密，存钱，取钱，转帐
+}
+改密(){
+}
+存钱(){
+}
+取钱(){
+}
+转帐(){
+}
+查询(){
+	//....................
+}
+
+

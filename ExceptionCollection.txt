@@ -1,0 +1,65 @@
+1：Exception:Parameter index out of range (3 > number of parameters, which is 2);
+原因 servlet里的sql语句书写有错。
+
+2：ajax默认是异步提交请求的，若希望在ajax的回调函数中根据请求返回的数据验证表单的某些信息，
+从而决定是否提交表单(return false/true，在回调函数中决定是否改变return参数的值),则需要将
+ajax的异步提交关掉，设为同步提交。
+--------------------------------------------------------------------------------------------------------
+<script>
+$(document).ready(function() {
+    $("#biddding_information_input").submit(function(){
+        var res = false;
+        $.ajax({
+            url: '/jw/validateBidInfo',
+            type: 'post',
+            dataType: 'json',
+            async:false, //注意false不加引号
+            data: {equip_id:$("input[name=equip_id]").val(), standard:$("#standard").val(),provider_id:$("input[name=provider_id]").val()},
+            success:function(data){
+                var data_id = data[0].id;
+                var form_id = $("#id").val();
+                console.log("data_id:" + data_id);
+                console.log("form_id:" + form_id);
+                if(form_id == "" && data_id == null){
+                    console.log("可以添加");
+                    res = true;
+                }else if(form_id == "" && data_id != null){
+                    alert("添加失败！已经存在品名、规格、中标公司都相同的投标信息！");
+                }else if(form_id != "" && (data_id == form_id || data_id == null)){
+                    console.log("可以修改");
+                    res = true;
+                }else{
+                    alert("修改失败！已经存在品名、规格、中标公司都相同的投标信息！");
+                }
+            }
+        });
+        console.log(res);
+        return res;
+    });
+});
+</script>
+--------------------------------------------------------------------------------------------------------
+MyEclipse启动失败，显示 : Failed to create the java virtual machine
+
+完全解决办法：
+方法一：
+你把JDK的bin路劲配置在环境变量PATH里面，增加在PATH变量值的最后面，增加的内容类似于：
+;C:\Program Files\Java\jdk1.6.0_21\bin;
+
+方法二：
+创建eclipse的快捷方式，然后在快捷方式的路径后面增加一个参数，类似于：
+eclipse.exe -vm "C:\Program Files\Java\jdk1.6.0_21\bin\javaw.exe"
+"E:\java\MyEclipse Professional 2014\myeclipse.exe" -vm "E:\java\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_1.7.0.u45\bin\javaw.exe"
+--------------------------------------------------------------------------------------------------------
+eclipse包显示workplace NO-HEAD
+解决办法：
+需要右击 Team > 断开到CVS的连接后重新再配置一次。
+ Team - Disconnect
+--------------------------------------------------------------------------------------------------------
+java.lang.IllegalStateException: No parameter name specified for argument of type [java.lang.Integer], and no parameter name information found in class file either.
+解决办法
+新版jdk忽略某些注解导致的参数传递异常
+将jdk切换为1.6版本即可。
+--------------------------------------------------------------------------------------------------------
+在内部类中不能出现静态块，静态变量和静态方法。
+--------------------------------------------------------------------------------------------------------

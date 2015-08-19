@@ -1,0 +1,68 @@
+
+1 简答题（写概念，思原理）
+1.1 在Linux系统下命令pwd，cd，ls，mkdir的作用分别是什么。
+
+参考答案：
+
+pwd ：打印工作目录
+
+cd ：改变工作目录
+
+ls ：查看目录内容
+
+mkdir ：创建目录
+1.2 简述相对路径和绝对路径。
+
+参考答案：
+
+绝对路径: 是文件或目录在硬盘上的绝对位置
+
+以根目录为开始: /home/soft01
+
+相对路径: 文件或目录相对于当前工作目录的位置
+
+不以根目录为开始: home/soft01
+
+参考答案：为什么java是跨平台的?
+
+通俗来讲就是Java所说的：一次编写，到处运行。
+
+Java 通过JVM 实现了跨平台技术。
+
+Java 源代码（*.java）经过Java的编译器编译成Java字节码（*.class）,执行Java字节码，Java字节码经过JVM的解释为具体平台的具体指令，并执行。不同平台有不同的JVM，主流平台都提供了JVM，所以JAVA字节码可以在所有平台上能够解释执行。在这个意义上Java是跨平台的。也就是说：Java 的字节码是跨平台的。
+
+
+2 填空题（读代码、加注释）
+2.1 下面的代码用于在指定位置添加注释。
+
+    //此语句意义何在？（创建了一个名为HelloWorld的类）
+    public class HelloWorld {
+    // 此语句意义何在？（ 定义Java应用程序的入口方法main ）
+    public static void main(String[] args) {
+    // 此语句意义何在？（ 在控制台打印输出字符串“Hello World” ）
+    System.out.println("Hello World!");
+    }
+    }
+
+3 编程题（改代码，写代码）
+3.1 使用Eclipse开发工具编写Member.java程序。在该程序中输出“Tom and Merry”。
+
+参考答案：    public class Member {
+        public static void main(String[] args) {
+            System.out.println(“Tom and Merry”);
+    }
+    }
+
+3.2 修改上述案例将Tom和Merry通过控制台接收输入获得，和“and”拼接成一个字符串“Tom and Merry”，输出到控制台。
+
+参考答案：    public class Member {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("请输入第一个成员：");
+            String first = scanner.next();
+            System.out.println("请输入第二个成员：");
+            String second = scanner.next();
+            scanner.close();
+            System.out.println(first + " and " + second);
+        }
+    }

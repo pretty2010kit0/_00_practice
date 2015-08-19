@@ -1,0 +1,112 @@
+
+1 简答题（写概念，思原理）
+1.1 char类型能否存储一个中文字符？为什么?
+
+参考答案：
+
+可以。一个char是两个字节，而一个中文也是两个字节。
+1.2 String a=null; if (a!=null && a.length()>10) {...}
+
+上面的代码，如果你用“&”替换“&&”将发生什么错误？
+
+参考答案：
+
+会抛出空指针异常。
+
+&&会短路，如果&&左边的表达式值为false，a!=null刚好为false，那么&&右边的
+表达式就不再执行了；而&则是会把两边的表达式都执行完。
+1.3 已知x,y,z的取值依次为5，6，7，写出执行下面运算后x，y，z的取值：
+x+=--y*z++；
+
+参考答案：
+
+x=40,y=5,z=8
+
+
+
+
+2 填空题（读代码、加注释）
+2.1 下面的代码用于在指定位置添加注释。
+
+    /*
+    *描述此段代码的功能：（ 计算自由落体运动中物体的位置 ）
+    */
+    // 此语句意义何在？( 导入java.util包下的Scanner类 )
+    import java.util.Scanner;
+    public class FreeFall {
+        public static void main(String[] args) {
+    // 此语句意义何在？( 创建接收控制台输入的类Scanner )
+            Scanner scanner = new Scanner(System.in);
+            double g = 9.80;
+            System.out.println("请输入自由下落的时间（秒）：");
+    // 此语句意义何在？( 使用double类型接收控制台输入的时间数据t )
+            double t = scanner.nextDouble();
+    // 此语句意义何在？( 根据自由落体的位移公式计算出位移值s )
+            double s = 0.5 * g * t * t;
+    // 此语句意义何在？( 取保保留一位小数 )
+            s = Math.round(10 * s) / 10.0;
+            System.out.println(t + "秒后，物体自由下落了" + s + "米");
+        }
+    }
+
+2.2 下面的代码用于在指定位置添加注释。
+
+    /*
+    *描述此段代码的功能：（ 判断某年是否为闰年 ）
+    */
+    import java.util.Scanner;
+    public class LeapYear {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("请输入年份（例如：2012）");
+            int year = scanner.nextInt();
+    // 此语句意义何在？( 根据闰年条件判断某年是否为闰年 )
+            boolean isLeapYear = (year % 4 == 0 && year % 100 != 0)
+                    || year % 400 == 0;
+            String msg = isLeapYear ? year + "是闰年" : year + "不是闰年";
+            System.out.println(msg);
+        }
+    }
+
+2.3 下面的代码用于在指定位置添加注释。
+
+    /*
+    *描述此段代码的功能：（ 计算sgn (x)函数的值 ）
+    */
+    public class SgnFunction {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("符号函数sgn（x）");
+            System.out.println("请输入x的值（double）");
+            double x = scanner.nextDouble();
+    // 此语句意义何在？( 使用三目运算符计算符号函数sgn(x)的值 )
+            int sgn = x > 0 ? 1 : (x < 0 ? -1 : 0);
+            System.out.println("sgn(" + x + ")=" + sgn);
+        }
+    }
+
+
+
+    加法练习器
+import java.util.Scanner;
+import java.util.Random;
+    
+    public class AddDemo {
+        public static void main(String[] args) {
+            Scanner console = new Scanner(System.in);
+            Random r = new Random();
+            int a = r.nextInt(10);
+            int b = r.nextInt(10);
+            System.out.print(a+"+" + b + "=?");
+            int c = console.nextInt();
+            if(c==a+b){
+                System.out.println("数学不错吗!");
+            }else{
+                System.out.println("恭喜你, 快上小学吧!");
+            }
+        }
+    }
+
+
+
+
